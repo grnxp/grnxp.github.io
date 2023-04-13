@@ -2,5 +2,5 @@
 
 * [Root](/)
 * [Architecture](/architecture/index.md)
-* [Dev](/development/index.md)
+* [Development](/development/index.md)
 * [Services](/services/index.md)
