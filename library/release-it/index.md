@@ -1,13 +1,3 @@
-# Release It !
-
-+++
-title = "Release It!"
-description = "A single dramatic software failure can cost a company millions of dollars - but can be avoided with simple changes to design and architecture"
-date = "2023-04-08"
-[taxonomies]
-authors = ["fred"]
-+++
-
 # Introduction
 
 > *A single dramatic software failure can cost a company millions of dollars - but can be avoided with simple changes to design and architecture.*
