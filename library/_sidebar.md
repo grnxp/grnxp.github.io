@@ -1,3 +1,3 @@
 - Books
 
-    * [Release It!](release-it/index.md)
+    * [Release It!](./release-it/index.md)
