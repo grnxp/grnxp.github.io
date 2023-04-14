@@ -171,7 +171,67 @@ This pattern improves overall stability by avoiding slow responses.
 
 ### Handshaking
 
+Handshaking refers to signaling between devices that regulate communication between them.
+It can be most valuable when unbalanced capacities are leading to slow responses.
+if the server can detect that it will not be able to meet its SLAs, then it should have some means to ask the caller to back off.
+
 Handshaking is all about the letting the server protect itself by trottling its own workload. Instead of being victim to whatever demands are made upon it, the server should have a way to reject incoming work.
+However, it is a crude protocole, and you better integrate it into your own protocole.
+
+### Test harnesses
+
+Distributed systems have failure modes that are difficult to provoke in development or QA environments.
+To be more torough about testing various components together, we often resort to an "integration testing".
+However, to be accurate, we would need to test *every new version* of *any application* against *every other version of every other application* - this would of course have a significant impact on the enterprise.
+
+Another option would be to test most or all of the failure modes that an application would offer through its testing environment.
+The solution would be to target chaos engineering, as the engine beneath test harnesses should not be bad, it should be devious and malicious.
+
+### Decoupling middleware
+
+Integration points are the number one cause of instability.
+Middlewares are meant to integrate and decouple (at the same time) systems.
+It integrates them by passing data and events back and forth between the systems.
+It decouples them by lettig the participating systems remove specific knwoledge of and calls to other systems.
+
+**Any king of synchronous call-and-response or request/reply method forces the calling system to stop what it's doing and wait**.
+In this model, the calling system and the receiving system must both be active at the same time - they are synchronous in time - though the y may be in different places.
+This category covers RPCs, HTTp, XML-RPC, RMI, CORBA, DCOM and any other analog of local method calls.
+Tightly coupled middlewares amplifies the shocks to the systems.
+The main advantage of synchronous middleware lies in it simplicity: based on previous stages, the application can clearly decide if will continue to the next step.
+
+Designing asynchronous systems is harder, as they must deal with exception queues, late responses and assumptions.
+
+Less tightly coupled forms of middleware allow the calling and receiving systems to process messages in different places and at different times: messages-oriented middlewares decouples the endpoint in both space and time.
+
+### Back pressure
+
+Every performance problem starts with a queue backing up somewhere; socket's listen queue, OS's run queue, databases I/O queue, ...
+As the queue grows, the time it takes for a pice of work to get all the way through it grows too.
+See [Little's Law](https://en.wikipedia.org/wiki/Little%27s_law) and probability about queues defines this in a more precise way: *as a queue's length reaches toward infinity, response time also heads toward infinity*.
+Let's say each API server is allowed 100 simultaneous calls to the cstorage engine.
+When the 101st arrives at the API server, the calling thread blocks until there is an open slot in the queue.
+Thath blocking is the back pressure: the API server cannot make calls any faster than it is allowed.
+
+When back pressure kicks in, monitoring needs to be aware. That way, you can tell whether it's a random fluctuation or a trend.
+
+### Shed load
+
+Services, microservices, websites and open APIs all share a common trait : they have zero control over their demand.
+At any moment, more than a billion devices could make a request.
+When load gets too high, start to refuse new requests to work.
+The ideal way to define "load is too high" is for a service to monitor its own performance relative to its own SLA: for instance, when a load balancer is in the picture, individual instances could use a 503 error to indicate that it's not available for any new request calls any more.
+
+# Design for production
+
+*Designing for production* means thinking about production issues as first-class concerns: (page 142-143)
+
+* **Operations**: Security, availablity, capacity, status, communication.
+* **Control plane**: Monitoring, deployment, anomaly detection, new features
+* **Interconnect**: Routing, load balancing, failover, traffic management
+* **Instances**: Services, processes, components, instance monitoring.
+* **Foundation**: Hardware, VMs, IP addresses, physical network.
+
 
 # Deliver your system
 
@@ -185,8 +245,12 @@ Handshaking is all about the letting the server protect itself by trottling its 
 
 # Solve systemic problems
 
+* Chaos engineering (335)
+
 # Conclusions
 
+1. Monitor your systems, just to be aware of any incident or failure.
+2. Try to anticipate every problem that could occur, and build yourself a test environment as close to the production as it could be: then, test failure modes of any integration points in the most complete way.
 
 # Must read
 
