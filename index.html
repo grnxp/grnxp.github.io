@@ -23,11 +23,21 @@
       mergeNavbar: true,
       maxLevel: 4,
       subMaxLevel: 2,
-      relativePath: true
+      relativePath: true,
+      search: 'auto',
+      search: {
+        maxAge: 86400000, 
+        paths: 'auto',
+        placeholder: 'Type to search',
+        noData: 'No Results!',
+        depth: 3,
+        hideOtherSidebarContent: true 
+     }
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 </body>
 
 </html>
