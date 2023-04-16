@@ -6,7 +6,7 @@
 
 # What is the Version Control?
 
-# Why using Version Control in Modern Sofware Deployment Pipelines
+# Why using Version Control in Modern Sofware Deployment Pipelines?
 
 # Tools
 
