@@ -1,19 +1,23 @@
-# Target Audience
+Target Audience
 
-# Prerequesites
+Prerequesites
 
-# Introduction
-
-# What is the Version Control?
-
-# Why using Version Control in Modern Sofware Deployment Pipelines?
-
-# Tools
-
-# Example
-
-# Best Practices and Further Readings
-
-# Conclusion
+## What is Version Control?
 
 
+## Why using Version Control in Modern Sofware Deployment Pipelines?
+
+
+## Tools
+
+
+## Examples
+
+
+## Best Practices
+
+
+## Further Readings
+
+
+## Conclusions
