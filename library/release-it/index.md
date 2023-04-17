@@ -63,8 +63,8 @@ The context diagram for any project will fall between one of these two patterns:
 1. The *butterfly* has a centralized system, with a lot of feeds and connections fanning int o on one side, and a large fan out on the other side.
 2. The *spiderweb* is a style with many boxes and dependencies. If you've been diligent, the calls will soap through boundaries and layers before being sent to a new layer. If not, the web will be chaotic. The feature common to all of these is that the connecions outnumber the services. A butterfly has 2N connections; a spiderweb might have up to 2^N, and yours falls somewhere in between.
 
-All these connections are integrations points, and every single one of them is out to destroy your system.
-The more you move toward a large number of smaller devices, the more we go API first, the worse this is going to get.
+**All these connections are integrations points, and every single one of them is out to destroy your system.
+The more you move toward a large number of smaller devices, the more we go API first, the worse this is going to get.**
 
 The simplest failure mode occurs when the remote system refuses connections.
 The calling system must deal with connection failures.
